@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.media_player_app.PlayerActivity
+import com.example.media_player_app.ui.PlayerActivity
 import com.example.media_player_app.databinding.MusicItemViewBinding
-import com.example.media_player_app.exoplayer.MusicPlayer
+import com.example.media_player_app.mediaPlayer.MusicPlayer
 import com.example.media_player_app.model.Song
+import com.example.media_player_app.ui.viewModels.SongsViewModel
 
 class MusicAdapter(
-    val context: Context
+    private val viewModel:SongsViewModel
 ) : RecyclerView.Adapter<MusicAdapter.MusicItemViewHolder>(){
-
 
     inner class MusicItemViewHolder(binding: MusicItemViewBinding):RecyclerView.ViewHolder(binding.root) {
         private val title = binding.tvTitle
@@ -26,13 +26,14 @@ class MusicAdapter(
             title.text = item.name
             artist.text = item.artist
 
-
             layout.setOnClickListener {
-                MusicPlayer.startPlaying(context, item)
-                context.startActivity(Intent(context, PlayerActivity::class.java))
+                viewModel.clickSong(item)
             }
         }
     }
+
+//    private lateinit var itemClickEvent: (Int) -> Unit
+
 
 
     private val diffCallback = object: DiffUtil.ItemCallback<Song>(){

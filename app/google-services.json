@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "440128050252",
+    "project_id": "media-player-c17dd",
+    "storage_bucket": "media-player-c17dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440128050252:android:416717aef4ee5b5cf210e9",
+        "android_client_info": {
+          "package_name": "com.example.media_player_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrhot9Gab6o2GDy0dB5_1DXpj4XsZPGDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
