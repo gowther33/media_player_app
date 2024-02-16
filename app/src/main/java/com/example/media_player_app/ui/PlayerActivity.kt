@@ -74,21 +74,9 @@ class PlayerActivity : BaseActivity() {
 
         val sessionToken = SessionToken(this, ComponentName(this, MusicPlaybackService::class.java))
         controllerFuture = MediaController.Builder(this, sessionToken).buildAsync()
-        val factory = MediaController.Builder(
-            this,
-            sessionToken
-        ).buildAsync()
-        factory.addListener(
+        controllerFuture.addListener(
             {
-                // MediaController is available here with controllerFuture.get()
-                mediaController = factory?.let{
-                    if (it.isDone){
-                        it.get()
-                    }
-                    else{
-                        null
-                    }
-                }
+               binding.playerView.player = controllerFuture.get()
             },
             MoreExecutors.directExecutor()
         )
