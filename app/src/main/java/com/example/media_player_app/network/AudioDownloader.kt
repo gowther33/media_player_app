@@ -11,12 +11,13 @@ class AudioDownloader(
 
 
     private val downloadManager = context.getSystemService(DownloadManager::class.java)
-    override fun downloadFile(url: String): Long {
+    override fun downloadFile(url: String, filename:String): Long {
         val request = DownloadManager.Request(url.toUri())
             .setMimeType("audio/mpeg")
+            .setTitle("${filename}.mp3")
             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI)
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            .setDestinationInExternalPublicDir(Environment.DIRECTORY_MUSIC,"")
+            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,filename)
         return downloadManager.enqueue(request)
     }
 }
